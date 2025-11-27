@@ -38,12 +38,36 @@ This Inventory Management System is a web-based application designed to centrall
 ### Frontend
 - Run `npm install` to install dependencies.
 - Use `npm start` to launch the React development server.
-- The frontend sends authenticated requests to the backend API.
+- The frontend communicates with the backend API using authenticated requests.
 
 ### Backend
 - Install Python dependencies: `pip install flask flask-cors pyjwt`
 - Run `python app.py` to start the Flask API server.
 - Supports login and protected search endpoints.
+
+## Testing Instructions
+
+### Frontend Testing
+1. Make sure the backend API is running and accessible.
+2. Start the frontend app with `npm start`.
+3. Open the web app in the browser (usually at `http://localhost:3000`).
+4. Use the login page with sample credentials (e.g., username: `"owner1"`, password: `"password1"`).
+5. After login, enter search queries in the search bar to fetch servers.
+6. Confirm that results appear as expected and the UI updates correctly.
+7. Test invalid login attempts to verify error handling.
+8. Optional: Use React Testing Library or similar to write unit tests for components.
+
+### Backend Testing
+1. Ensure Python environment has required modules installed.
+2. Run `python app.py` to start the Flask server.
+3. Test authentication endpoint:
+   - POST `/api/login` with JSON body `{ "username": "owner1", "password": "password1" }`.
+   - Confirm you receive a JWT token on success.
+4. Test search endpoint:
+   - GET `/api/servers?query=server` with `Authorization: Bearer <token>` header.
+   - Verify JSON response contains expected server data.
+5. Test invalid token or missing token returns 401 Unauthorized.
+6. Optional: Write unit tests using pytest or unittest covering authentication and API responses.
 
 ## Future Enhancements
 - Full CRUD operations to create, update, and delete server records.
@@ -51,4 +75,3 @@ This Inventory Management System is a web-based application designed to centrall
 - Audit trail and detailed role management.
 - More advanced search features with Elasticsearch.
 - Two-factor authentication for enhanced security.
-
